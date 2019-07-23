@@ -11,7 +11,7 @@ class Form extends React.Component {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
-	submitItem = e => {
+	submitTodo = e => {
 		e.preventDefault();
 		this.setState({ item: '' });
 		this.props.addItem(e, this.state.item);
@@ -19,7 +19,7 @@ class Form extends React.Component {
 	render() {
 		console.log('rendering form');
 		return (
-			<form onSubmit={this.submitItem}>
+			<form onSubmit={this.submitTodo}>
 				<input type='text' value={this.state.item} name='item' onChange={this.handleChanges} />
 				<button>Add</button>
 			</form>

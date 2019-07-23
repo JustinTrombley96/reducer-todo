@@ -1,4 +1,4 @@
-export const ADD_ITEM = 'ADD_ITEM';
+export const ADD_TODO = 'ADD_TODO';
 export const initialState = {
 	todos : [
 		{
@@ -21,33 +21,33 @@ export const initialState = {
 
 export const reducer = (state, action) => {
 	switch (action.type) {
-		case 'ADD_ITEM':
-			const newItem = {
+		case 'ADD_TODO':
+			const newTodo = {
 				item      : action.payload,
 				completed : false,
 				id        : Date.now(),
 			};
 			return {
 				...state,
-				todos : [ ...state.todos, newItem ],
+				todos : [ ...state.todos, newTodo ],
 			};
-		case 'TOGGLE_ITEM':
+		case 'TOGGLE_TODO':
 			return {
 				...state,
-				todos : state.todos.map(item => {
-					if (action.payload === item.id) {
+				todos : state.todos.map(todo => {
+					if (action.payload === todo.id) {
 						return {
-							...item,
-							completed : !item.completed,
+							...todo,
+							completed : !todo.completed,
 						};
 					}
-					return item;
+					return todo;
 				}),
 			};
 		case 'CLEAR_COMPLETED':
 			return {
 				...state,
-				todos : state.todos.filter(item => !item.completed),
+				todos : state.todos.filter(todo => !todo.completed),
 			};
 		default:
 			return state;
